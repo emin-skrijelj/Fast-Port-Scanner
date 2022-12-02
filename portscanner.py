@@ -79,11 +79,7 @@ if option == '1':
 
             try:
                 asyncio.run(event_loop())
-                print(prts)
                 val = ','.join(prts)
-                print(val)
-                print(type(val))
-                print(type(dom[0]),dom[0])
                 sqi = "UPDATE domains SET ports = '{}' where ip = '{}'".format(val,dom[0])
                 mycursor.execute(sqi)
                 mydb.commit()
