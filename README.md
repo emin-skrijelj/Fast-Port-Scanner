@@ -16,5 +16,6 @@ It is using a webhook to send the open ports status to you desired discord chann
 
 ### Requirements
 Install python pyfiglet libary. Manually or using `pip install pyfiglet`
+
 Install python mysql libary. Manyally from mysql website or using `pip install mysql-connector-python`
 
