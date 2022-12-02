@@ -95,6 +95,7 @@ if option == '1':
                     rez.raise_for_status()
                 except requests.exceptions.HTTPError as err:
                     print(err)
+                    pass
 
 
 
