@@ -6,6 +6,7 @@ import time
 import pyfiglet
 import mysql.connector
 import asyncio
+import requests 
 
 
 #connecting to mysql database
@@ -83,6 +84,19 @@ if option == '1':
                 sqi = "UPDATE domains SET ports = '{}' where ip = '{}'".format(val,dom[0])
                 mycursor.execute(sqi)
                 mydb.commit()
+                url = "<your webhook url>" 
+                data = {
+                    "content" : f'```Scanned ip - {dom[0]} --- \n Open Ports: {val} \n Completed at {datetime.now()}```',
+                    "username" : "Port Scanner"
+                    }
+                rez = requests.post(url, json = data)
+
+                try:
+                    rez.raise_for_status()
+                except requests.exceptions.HTTPError as err:
+                    print(err)
+
+
 
             except KeyboardInterrupt:
                 print("You exited the program... bye!")
@@ -98,6 +112,7 @@ if option == '1':
             t2 = datetime.now()
 
             total_time = t2 - t1
+            
 
             print(f'Scanning completed in {total_time}')
             print(f'Scaning completed at {datetime.now()}')
